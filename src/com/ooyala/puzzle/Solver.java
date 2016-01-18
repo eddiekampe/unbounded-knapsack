@@ -61,7 +61,7 @@ public class Solver {
 
             Campaign campaign = campaigns.get(campaignIndex);
             combination.put(campaign, combination.get(campaign) + 1);
-            capacity -= campaign.getImpressions() / gcd;
+            capacity -= campaign.getImpressions() / gcd; // Don't forget our optimization
         }
 
         return new Solution(combination);

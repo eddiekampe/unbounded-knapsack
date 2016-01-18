@@ -12,16 +12,24 @@ public class Solution {
 
     public void print() {
 
-        // TODO: Adjust output to match the criteria
-        combination.entrySet().stream().forEach(e -> {
+        Integer totalImpressions = 0;
+        Integer totalRevenue = 0;
 
-            Campaign c = e.getKey();
-            Integer occurrences = e.getValue();
+        for (Map.Entry<Campaign, Integer> entry : combination.entrySet()) {
 
-            String output = String.format("%s,%d,%d,%d", c.getCustomer(), occurrences, c.getImpressions() * occurrences,
-                    c.getRevenue() * occurrences);
+            Campaign campaign = entry.getKey();
+            Integer occurrences = entry.getValue();
 
-            System.out.println(output);
-        });
+            totalImpressions += campaign.getImpressions() * occurrences;
+            totalRevenue += campaign.getRevenue() * occurrences;
+
+            System.out.println(String.format("%s,%d,%d,%d", campaign.getCustomer(),
+                                                            occurrences,
+                                                            campaign.getImpressions() * occurrences,
+                                                            campaign.getRevenue() * occurrences));
+        }
+
+        System.out.println(String.format("%d,%d", totalImpressions, totalRevenue));
+
     }
 }

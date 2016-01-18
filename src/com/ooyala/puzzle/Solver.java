@@ -16,19 +16,18 @@ public class Solver {
 
     public Solution solve() {
 
-        // Unpack for shorter referencing
         Integer maxImpressions = puzzle.getMaxImpressions();
         List<Campaign> campaigns = puzzle.getCampaigns();
 
-        // If we can find a common divider, we may reduce the problem space
+        // STEP 1: If we can find a common divider, we may reduce the problem space
         List<Integer> impressionList = campaigns.stream().map(Campaign::getImpressions).collect(Collectors.toList());
         Integer gcd = new GCDHelper().calculate(maxImpressions, impressionList);
 
         // Init two arrays, one to keep track of best profit for a certain volume
-        // A
         int[] profit = new int[maxImpressions / gcd + 1]; // Store profit for a certain volume
         int[] campaignIndexAtVolume = new int[maxImpressions / gcd + 1]; // Store index of campaign last added
 
+        // STEP 2: Generate data used to draw a decision
         IntStream.range(0, maxImpressions / gcd + 1).forEach(i -> campaignIndexAtVolume[i] = Integer.MIN_VALUE);
         IntStream.range(0, campaigns.size()).forEach(i -> {
 
@@ -39,28 +38,28 @@ public class Solver {
 
                 Integer option = profit[j - impressions] + revenue;
 
-                if (option >= profit[j]) {
+                if (option >= profit[j]) { // We just found a better alternative
                     profit[j] = option;
-                    campaignIndexAtVolume[j] = i;
+                    campaignIndexAtVolume[j] = i; // Save the index of the campaign that provided better profit
                 }
             });
         });
 
         Map<Campaign, Integer> combination = new HashMap<>();
-        campaigns.stream().forEach(c -> combination.put(c, 0));
+        campaigns.stream().forEach(c -> combination.put(c, 0)); // Default to 0 occurrences
 
-        // Backtrack, resolve which campaigns that are part of the optimal combination
+        // STEP 3: Backtrack, resolve which campaigns that are part of the optimal combination
         Integer capacity = maxImpressions / gcd;
         while (capacity > 0) {
 
             Integer campaignIndex = campaignIndexAtVolume[capacity];
-            if (campaignIndex == Integer.MIN_VALUE) {
+            if (campaignIndex == Integer.MIN_VALUE) { // Nothing to do here, move on
                 capacity--;
                 continue;
             }
 
             Campaign campaign = campaigns.get(campaignIndex);
-            combination.put(campaign, combination.get(campaign) + 1);
+            combination.put(campaign, combination.get(campaign) + 1); // Update occurrences
             capacity -= campaign.getImpressions() / gcd; // Don't forget our optimization
         }
 

@@ -63,6 +63,6 @@ public class Solver {
             capacity -= campaign.getImpressions() / gcd; // Don't forget our optimization
         }
 
-        return new Solution(combination);
+        return new Solution(puzzle, combination);
     }
 }

@@ -4,9 +4,11 @@ import java.util.Map;
 
 public class Solution {
 
+    private final Puzzle puzzle;
     private final Map<Campaign, Integer> combination;
 
-    public Solution(Map<Campaign, Integer> combination) {
+    public Solution(Puzzle puzzle, Map<Campaign, Integer> combination) {
+        this.puzzle = puzzle;
         this.combination = combination;
     }
 
@@ -15,10 +17,9 @@ public class Solution {
         Integer totalImpressions = 0;
         Integer totalRevenue = 0;
 
-        for (Map.Entry<Campaign, Integer> entry : combination.entrySet()) {
+        for (Campaign campaign : puzzle.getCampaigns()) {
 
-            Campaign campaign = entry.getKey();
-            Integer occurrences = entry.getValue();
+            Integer occurrences = combination.get(campaign);
 
             totalImpressions += campaign.getImpressions() * occurrences;
             totalRevenue += campaign.getRevenue() * occurrences;
@@ -30,6 +31,5 @@ public class Solution {
         }
 
         System.out.println(String.format("%d,%d", totalImpressions, totalRevenue));
-
     }
 }

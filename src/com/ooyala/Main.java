@@ -1,6 +1,9 @@
 package com.ooyala;
 
 import com.ooyala.helpers.InputHelper;
+import com.ooyala.puzzle.Puzzle;
+import com.ooyala.puzzle.Solution;
+import com.ooyala.puzzle.Solver;
 
 import java.io.IOException;
 

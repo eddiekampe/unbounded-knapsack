@@ -21,7 +21,7 @@ public class Solver {
 
         // STEP 1: If we can find a common divider, we may reduce the problem space
         List<Integer> impressionList = campaigns.stream().map(Campaign::getImpressions).collect(Collectors.toList());
-        Integer gcd = new GCDHelper().calculate(maxImpressions, impressionList);
+        Integer gcd = GCDHelper.calculate(maxImpressions, impressionList);
 
         // Init two arrays, one to keep track of best profit for a certain volume
         int[] profit = new int[maxImpressions / gcd + 1]; // Store profit for a certain volume

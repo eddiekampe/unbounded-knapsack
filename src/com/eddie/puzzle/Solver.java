@@ -1,6 +1,6 @@
-package com.ooyala.puzzle;
+package com.eddie.puzzle;
 
-import com.ooyala.helpers.GCDHelper;
+import com.eddie.helpers.GCDHelper;
 
 import java.util.*;
 import java.util.stream.Collectors;

@@ -1,9 +1,9 @@
-package com.ooyala;
+package com.eddie;
 
-import com.ooyala.helpers.InputHelper;
-import com.ooyala.puzzle.Puzzle;
-import com.ooyala.puzzle.Solution;
-import com.ooyala.puzzle.Solver;
+import com.eddie.helpers.InputHelper;
+import com.eddie.puzzle.Puzzle;
+import com.eddie.puzzle.Solution;
+import com.eddie.puzzle.Solver;
 
 import java.io.IOException;
 

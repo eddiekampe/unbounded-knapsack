@@ -1,7 +1,7 @@
-package com.ooyala.helpers;
+package com.eddie.helpers;
 
-import com.ooyala.puzzle.Campaign;
-import com.ooyala.puzzle.Puzzle;
+import com.eddie.puzzle.Campaign;
+import com.eddie.puzzle.Puzzle;
 
 import java.io.IOException;
 import java.nio.file.Files;

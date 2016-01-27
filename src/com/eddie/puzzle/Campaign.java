@@ -1,4 +1,4 @@
-package com.ooyala.puzzle;
+package com.eddie.puzzle;
 
 public class Campaign {
 

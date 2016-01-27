@@ -1,4 +1,4 @@
-package com.ooyala.helpers;
+package com.eddie.helpers;
 
 import java.math.BigInteger;
 import java.util.List;

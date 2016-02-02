@@ -15,6 +15,7 @@ public class GCDHelper {
             BigInteger.valueOf(v).gcd(BigInteger.valueOf(value)).intValue()
         );
 
-        return divisors.reduce(value, Integer::min);
+        // Make sure to run GCD between the divisors as well
+        return divisors.reduce(value, (a, b) -> BigInteger.valueOf(a).gcd(BigInteger.valueOf(b)).intValue());
     }
 }
